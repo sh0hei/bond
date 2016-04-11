@@ -1,5 +1,7 @@
 package net.fwbrasil.bond
 
+import scala.math.sqrt
+
 trait GreaterThan[-T]
 case object GreaterThan
   extends NumericValidator[GreaterThan] {
@@ -56,7 +58,7 @@ case object Prime
     v match {
       case v if (v <= 1) => false
       case v if (v == 2) => true
-      case v             => !(2 to (v - 1)).exists(x => v % x == 0)
+      case v             => !(2 to sqrt(v).toInt).filter(x => x % 2 != 0).exists(x => v % x == 0)
     }
 }
 
